@@ -27,17 +27,20 @@ export default function HomePage({ events }) {
 // export async function getServerSideProps() {
 //   // const res = await fetch(`${API_URL}/api/events?_sort=date:ASC&_limit=3`);
 //   const res = await fetch(`http://localhost:3000/api/events`)
-//   const events = await res.json();
-
+//   const events = await JSON.parse(JSON.stringify(res))
+ 
 //   return {
 //     props: { events:
 //       events.data
 //     },
 //   };
 // }
+
 export async function getServerSideProps() {
   const res = await fetch(`${API_URL}/api/events`);
   const events = await res.json();
+  
+  console.log( events )
 
   return {
     props: { events:events.slice(0, 3) },
